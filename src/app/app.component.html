@@ -1,11 +1,17 @@
 <div>
   <app-header></app-header>
   <app-budget-show></app-budget-show>
-  <app-expense-form></app-expense-form>
+
+  <app-expense-form
+    (addIncome)="addIncome($event)"
+    (addExpense)="addExpense($event)"
+  ></app-expense-form>
+
   <div class="container">
     <app-expense-list
       [textColor]="greenColor"
       [headerText]="headerOne"
+      [amountList]="incomeListData"
     ></app-expense-list>
 
     <div class="divider"></div>
@@ -13,6 +19,7 @@
     <app-expense-list
       [textColor]="redColor"
       [headerText]="headerTwo"
+      [amountList]="expenseListData"
     ></app-expense-list>
   </div>
 </div>

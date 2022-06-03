@@ -1,0 +1,27 @@
+{
+  "income": [
+    {
+      "id": 1,
+      "amount": 400,
+      "name": "salary",
+      "type": "income"
+    },
+    {
+      "id": 2,
+      "amount": 600,
+      "name": "salary two",
+      "type": "income"
+    }
+  ],
+  "expense": [
+    {
+      "id": 1,
+      "amount": -200,
+      "name": "food",
+      "type": "expense"
+    }
+  ],
+  "budget": {
+    "total": 0
+  }
+}

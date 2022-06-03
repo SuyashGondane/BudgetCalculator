@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Expense } from 'src/app/Expense';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-expense-details',
@@ -10,15 +10,19 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 export class ExpenseDetailsComponent implements OnInit {
   @Input() expense!: Expense;
   @Input() badgeColor: string = '#69f0ae';
-  faTimes = faTimes;
+  @Output() closeBtnClick: EventEmitter<Expense> = new EventEmitter();
+  faTimes = faTrash;
   showCloseButton: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onHoverToggle() {
-    console.log(this.showCloseButton);
+  onHoverToggle(): void {
     this.showCloseButton = !this.showCloseButton;
+  }
+
+  onCloseClick(expense: Expense): void {
+    this.closeBtnClick.emit(expense);
   }
 }

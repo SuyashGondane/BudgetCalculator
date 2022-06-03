@@ -3,11 +3,16 @@
   (mouseenter)="onHoverToggle()"
   (mouseleave)="onHoverToggle()"
 >
-  <span class="expense-name">Salary</span>
+  <span class="expense-name">{{ expense.name }}</span>
   <div class="expense-amount-wrapper">
-    <span class="expense-amount" [ngStyle]="{ background: badgeColor }"
-      >1000</span
-    >
+    <span class="expense-amount" [ngStyle]="{ background: badgeColor }">{{
+      expense.amount
+    }}</span>
   </div>
-  <fa-icon *ngIf="showCloseButton" class="close" [icon]="faTimes"></fa-icon>
+  <fa-icon
+    *ngIf="showCloseButton"
+    (click)="onCloseClick(expense)"
+    class="close"
+    [icon]="faTimes"
+  ></fa-icon>
 </div>

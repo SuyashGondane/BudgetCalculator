@@ -1,20 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Expense } from 'src/app/Expense';
-
-const mockExpenses: Expense[] = [
-  {
-    name: 'Salary',
-    amount: 1000,
-  },
-  {
-    name: 'Stocks',
-    amount: 100,
-  },
-  {
-    name: 'Business',
-    amount: 500,
-  },
-];
+import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
   selector: 'app-expense-list',
@@ -24,11 +10,11 @@ const mockExpenses: Expense[] = [
 export class ExpenseListComponent implements OnInit {
   @Input() textColor: string = '#00c853';
   @Input() headerText: string = 'INCOME';
-  expenses: Expense[] = mockExpenses;
+  @Input() amountList: Expense[] = [];
   greenBadgeColor: string = '#B9F6CA';
   redBadgeColor: string = '#FF8A80';
 
-  constructor() {}
+  constructor(private expenseService: ExpenseService) {}
 
   ngOnInit(): void {}
 
@@ -36,5 +22,27 @@ export class ExpenseListComponent implements OnInit {
     return this.textColor === '#00c853'
       ? this.greenBadgeColor
       : this.redBadgeColor;
+  }
+
+  deleteExpense(expense: Expense) {
+    if (expense.type === 'income') {
+      this.expenseService
+        .deleteTypeIcome(expense)
+        .subscribe(
+          () =>
+            (this.amountList = this.amountList.filter(
+              (exp) => exp.id != expense.id
+            ))
+        );
+    } else if (expense.type === 'expense') {
+      this.expenseService
+        .deleteTypeExpense(expense)
+        .subscribe(
+          () =>
+            (this.amountList = this.amountList.filter(
+              (exp) => exp.id != expense.id
+            ))
+        );
+    }
   }
 }
