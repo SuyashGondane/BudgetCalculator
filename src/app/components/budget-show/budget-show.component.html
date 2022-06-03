@@ -1,3 +1,7 @@
 <mat-toolbar color="#546E7A" class="budget-toolbar">
-  <span class="amount">0</span>
+  <span
+    class="amount"
+    [ngStyle]="{ color: budget > 0 ? greenColor : redColor }"
+    >{{ budget }}</span
+  >
 </mat-toolbar>

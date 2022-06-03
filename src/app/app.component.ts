@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Expense } from './Expense';
+import { BudgetService } from './services/budget.service';
 import { ExpenseService } from './services/expense.service';
 
 @Component({
@@ -8,36 +9,47 @@ import { ExpenseService } from './services/expense.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'Budget Calculator';
-  greenColor = '#00c853';
-  redColor = '#d50000';
-  headerOne = 'INCOME';
-  headerTwo = 'EXPENSE';
+  title: string = 'Budget Calculator';
+  greenColor: string = '#00c853';
+  redColor: string = '#d50000';
+  headerOne: string = 'INCOME';
+  headerTwo: string = 'EXPENSE';
 
   incomeListData: Expense[] = [];
   expenseListData: Expense[] = [];
 
-  constructor(private expenseService: ExpenseService) {}
+  constructor(
+    private expenseService: ExpenseService,
+    private budgetService: BudgetService
+  ) {}
 
   ngOnInit(): void {
-    this.expenseService
-      .getIncomeList()
-      .subscribe((data) => (this.incomeListData = data));
-
-    this.expenseService
-      .getExpenseList()
-      .subscribe((data) => (this.expenseListData = data));
+    this.expenseService.getIncomeList().subscribe((data) => {
+      this.incomeListData = data;
+      this.expenseService.getExpenseList().subscribe((data) => {
+        this.expenseListData = data;
+        const fullListData: Expense[] = [
+          ...this.incomeListData,
+          ...this.expenseListData,
+        ];
+        this.budgetService.updateBudget(fullListData);
+      });
+    });
   }
 
   addIncome(expense: Expense) {
     this.expenseService
       .addTypeIncome(expense)
       .subscribe((exp) => this.incomeListData.push(exp));
+
+    this.budgetService.updateBudget([expense]);
   }
 
   addExpense(expense: Expense) {
     this.expenseService
       .addTypeExpense(expense)
       .subscribe((exp) => this.expenseListData.push(exp));
+
+    this.budgetService.updateBudget([expense]);
   }
 }

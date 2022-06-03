@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Expense } from 'src/app/Expense';
+import { BudgetService } from 'src/app/services/budget.service';
 import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
@@ -14,7 +15,10 @@ export class ExpenseListComponent implements OnInit {
   greenBadgeColor: string = '#B9F6CA';
   redBadgeColor: string = '#FF8A80';
 
-  constructor(private expenseService: ExpenseService) {}
+  constructor(
+    private expenseService: ExpenseService,
+    private budgetService: BudgetService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -44,5 +48,7 @@ export class ExpenseListComponent implements OnInit {
             ))
         );
     }
+
+    this.budgetService.updateBudget([expense], false);
   }
 }

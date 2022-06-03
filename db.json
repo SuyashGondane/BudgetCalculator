@@ -5,12 +5,6 @@
       "amount": 400,
       "name": "salary",
       "type": "income"
-    },
-    {
-      "id": 2,
-      "amount": 600,
-      "name": "salary two",
-      "type": "income"
     }
   ],
   "expense": [
@@ -19,9 +13,12 @@
       "amount": -200,
       "name": "food",
       "type": "expense"
+    },
+    {
+      "amount": -60,
+      "name": "d00fensm1rtz",
+      "type": "expense",
+      "id": 3
     }
-  ],
-  "budget": {
-    "total": 0
-  }
+  ]
 }
