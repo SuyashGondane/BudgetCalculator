@@ -3,13 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BudgetShowComponent } from './components/budget-show/budget-show.component';
 import { ExpenseFormComponent } from './components/expense-form/expense-form.component';
+import { ExpenseListComponent } from './components/expense-list/expense-list.component';
+import { ExpenseDetailsComponent } from './components/expense-details/expense-details.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +18,15 @@ import { ExpenseFormComponent } from './components/expense-form/expense-form.com
     HeaderComponent,
     BudgetShowComponent,
     ExpenseFormComponent,
+    ExpenseListComponent,
+    ExpenseDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatInputModule,
-    MatFormFieldModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

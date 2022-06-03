@@ -1,0 +1,8 @@
+<div class="expense-list-container" [ngStyle]="{ color: textColor }">
+  <h2>{{ headerText }}</h2>
+  <app-expense-details
+    *ngFor="let exp of expenses"
+    [expense]="exp"
+    [badgeColor]="getBadgeColor()"
+  ></app-expense-details>
+</div>

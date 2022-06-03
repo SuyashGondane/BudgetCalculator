@@ -1,0 +1,13 @@
+<div
+  class="expense-details"
+  (mouseenter)="onHoverToggle()"
+  (mouseleave)="onHoverToggle()"
+>
+  <span class="expense-name">Salary</span>
+  <div class="expense-amount-wrapper">
+    <span class="expense-amount" [ngStyle]="{ background: badgeColor }"
+      >1000</span
+    >
+  </div>
+  <fa-icon *ngIf="showCloseButton" class="close" [icon]="faTimes"></fa-icon>
+</div>

@@ -1,0 +1,11 @@
+.expense-list-container {
+  margin: 10px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.expense-list-container h2 {
+  font-weight: 500;
+  text-align: center;
+}
